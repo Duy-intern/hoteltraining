@@ -1,6 +1,6 @@
-const Dashboard = () => {
+const ProviderDashboard = () => {
     return <div>Welcome to the Provider Dashboard</div>;
   };
   
-  export default Dashboard;
+  export default ProviderDashboard;
   

@@ -1,9 +1,7 @@
 "use client"
 import React from 'react';
-import { Breadcrumb, Image, Layout, Menu, theme } from 'antd';
+import { Breadcrumb, Button, Image, Layout, Menu, theme } from 'antd';
 
-import LoginButton from './components/loginbutton';
-import RegisterButton from './components/registerbutton';
 import Link from 'antd/es/typography/Link';
 
 
@@ -34,8 +32,12 @@ const App: React.FC = () => {
           items={items}
           style={{ flex: 1, minWidth: 0 }}
         />
-        <LoginButton/>
-        <RegisterButton/>     
+          <Link href="/login">
+        <Button>Login</Button>
+      </Link>
+      <Link href="/register">
+          <Button> Register</Button>
+      </Link>
       </Header>
       <Content style={{ padding: '0 48px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>

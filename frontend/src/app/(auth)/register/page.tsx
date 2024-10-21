@@ -1,5 +1,5 @@
 "use client"
-import Register from '@/app/components/auth/Register';
+import Register from '@/components/auth/Register';
 import { Layout } from 'antd';
 
 const { Content } = Layout;

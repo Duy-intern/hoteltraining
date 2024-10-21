@@ -1,5 +1,5 @@
 "use client"
-import CreateHotelForm from '@/app/components/provider/CreateHotel';
+import CreateHotelForm from '@/components/provider/CreateHotel';
 
 
 const CreateHotelPage = () => {

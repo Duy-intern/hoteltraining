@@ -1,4 +1,4 @@
-import Login from '@/app/components/auth/Login';
+import Login from '@/components/auth/Login';
 import Layout, { Content } from 'antd/es/layout/layout';
 
 const LoginPage = () => {
