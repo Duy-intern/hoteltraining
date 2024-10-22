@@ -28,7 +28,7 @@ const route = useRouter();
     const fecthHotels = async () =>{
         if(!token) return;
       try{
-        const response = await axios.get('http://localhost:3001/hotel/provider',{
+        const response = await axios.get('http://localhost:3001/hotel/admin',{
           headers: {
             Authorization: `Bearer ${token}`, 
           },
@@ -43,11 +43,11 @@ const route = useRouter();
   },[token])
 
   const handleEdit = (_id : string) =>{
-    route.push(`/hotel/provider/${_id}`)
+    route.push(`/hotel/admin/${_id}`)
   }
 
   const handleUpdate = (_id : string) =>{
-    route.push(`/hotel/provider/${_id}/status`)
+    route.push(`/hotel/admin/${_id}/status`)
   }
 
 

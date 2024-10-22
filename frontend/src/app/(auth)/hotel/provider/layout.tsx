@@ -7,7 +7,7 @@ import Link from 'next/link';
 const { Header, Content, Footer, Sider } = Layout;
 
 const items2 = [
-  { key: '1', label: <Link href="/hotel/provider">Provider</Link> },
+  { key: '1', label: <Link href="/hotel/provider">Create Hotel</Link> },
   { key: '2', label: <Link href="/hotel/provider/list-hotel">Hotel List</Link> },
   { key: '3', label: <Link href="/hotel/provider/booked-hotel">Booked Hotel</Link> },
 ];

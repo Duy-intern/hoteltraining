@@ -3,6 +3,7 @@
 import React from 'react';
 import { Form, Input, Button, InputNumber, message } from 'antd';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface HotelFormValues {
   name: string;
@@ -13,11 +14,11 @@ interface HotelFormValues {
 }
 
 const CreateHotelForm: React.FC = () => {
-    
+    const route= useRouter();
   const onFinish = async (values: HotelFormValues) => {
     try {
       const token = localStorage.getItem('token');
-
+      
       const response = await axios.post('http://localhost:3001/hotel/provider', values,
         {
           headers: {
@@ -25,8 +26,8 @@ const CreateHotelForm: React.FC = () => {
           }
         }
       )
-      message.success('Khách sạn đã được tạo thành công ');
       console.log('Hotel created:', response.data);
+      route.push('/hotel/provider/list-hotel')
     } catch (error) {
       message.error('Có lỗi xảy ra khi tạo khách sạn.');
       console.error('Error creating hotel:', error);
@@ -47,7 +48,7 @@ const CreateHotelForm: React.FC = () => {
         name="ratings"
         label="Đánh giá"
         rules={[
-          { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 0 đến 5' }
+          { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 1 đến 5' }
         ]}
       >
         <InputNumber placeholder="Nhập đánh giá khách sạn (0-5)" step={1} />

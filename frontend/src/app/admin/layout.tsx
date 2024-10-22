@@ -7,9 +7,9 @@ import Link from 'next/link';
 const { Header, Content, Footer, Sider } = Layout;
 
 const items2 = [
-  { key: '1', label: <Link href="/hotel/admin">Admin</Link> },
-  { key: '2', label: <Link href="/hotel/admin/list-hotel">Hotel List</Link> },
-  { key: '3', label: <Link href="/hotel/admin/booked-hotel">Booked Hotel</Link> },
+  { key: '1', label: <Link href="/admin">Hotel</Link> },
+  { key: '2', label: <Link href="/admin">Hotel List</Link> },
+  { key: '3', label: <Link href="/admin">Booked Hotel</Link> },
 ];
 
 const ProviderLayout = ({ children }: { children: React.ReactNode }) => {
@@ -27,7 +27,7 @@ const ProviderLayout = ({ children }: { children: React.ReactNode }) => {
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>Hotel</Breadcrumb.Item>
-          <Breadcrumb.Item>Admin</Breadcrumb.Item>
+          <Breadcrumb.Item>Provider</Breadcrumb.Item>
         </Breadcrumb>
         <Layout
           style={{

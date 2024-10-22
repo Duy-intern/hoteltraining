@@ -44,6 +44,7 @@ const EditHotel: React.FC = () => {
   }, [_id, token,form]);
 
   const onFinish = async (values: Hotel) => {
+    
     try {
       await axios.patch(`http://localhost:3001/hotel/provider/${_id}`, values, {
         headers: {
@@ -105,6 +106,7 @@ const EditHotel: React.FC = () => {
 
       <Form.Item>
         <Button type="primary" htmlType="submit">Update Hotel</Button>
+
       </Form.Item>
     </Form>
     
