@@ -1,10 +1,11 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { List } from 'antd';
+import { Button, Layout, List } from 'antd';
+import { useRouter } from 'next/navigation';
 
 interface Hotel {
-  id: string;
+  _id: string;
   name: string;
   ratings: number;
   address: string;
@@ -15,7 +16,7 @@ interface Hotel {
 
 const HotelList: React.FC = () => {
   const [hotels,setHotels] = useState<Hotel[]>([]);
-
+const route = useRouter();
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const HotelList: React.FC = () => {
   }, []);
 
   useEffect (() => {
-    const fecthHotels = async   () =>{
+    const fecthHotels = async () =>{
         if(!token) return;
       try{
         const response = await axios.get('http://localhost:3001/hotel/provider',{
@@ -33,7 +34,7 @@ const HotelList: React.FC = () => {
           },
         })
         setHotels(response.data)
-
+        console.log(HotelList)
       }catch(error){
         console.log('Không lấy đc dữ liệu',error)
       }
@@ -41,19 +42,33 @@ const HotelList: React.FC = () => {
     fecthHotels();
   },[token])
 
+  const handleEdit = (_id : string) =>{
+    route.push(`/hotel/provider/${_id}`)
+  }
+
   return (
-    <List
+    <Layout>
+            <List
     itemLayout="horizontal"
     dataSource={hotels}
-    renderItem={item => (
-      <List.Item>
+    renderItem={(item) => (
+      <List.Item  
+       actions={[
+        <Button key={item._id} type="primary" onClick={() => handleEdit(item._id)}>
+          Sửa
+        </Button>
+      ]}
+    >
         <List.Item.Meta
           title={<a href="#">{item.name}</a>}
           description={`Địa chỉ: ${item.address}, Thành phố: ${item.city}, Giá: ${item.price} USD`} 
           />
       </List.Item>
     )}
+    
   />
+    </Layout>
+
   );
 };
 
