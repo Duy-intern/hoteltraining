@@ -18,12 +18,7 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
   const router = useRouter();
   const { _id } = useParams();
  
-  const [token, setToken] = useState<string | null>(null);
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    setToken(storedToken);
-  }, []);
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchHotel = async () => {
       if (!_id ||!token) return;

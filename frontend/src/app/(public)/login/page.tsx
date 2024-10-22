@@ -19,7 +19,7 @@ const Login: React.FC = () => {
       const response = await axios.post('http://localhost:3001/auth',values)
       localStorage.setItem('token',response.data.accessToken);
       console.log("suscess: ",response.data)
-      route.push('/')
+      route.push('/provider')
       console.log(localStorage.getItem('token'))
     }catch(error){
       console.log("Error",error)

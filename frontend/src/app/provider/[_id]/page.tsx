@@ -52,7 +52,7 @@ const EditHotel: React.FC = () => {
         },
       });
       message.success("Khách sạn đã được cập nhật thành công.");
-      router.push("/hotel/provider/list-hotel"); 
+      router.push("/provider/list-hotel"); 
     } catch (error) {
       console.log(error);
     }

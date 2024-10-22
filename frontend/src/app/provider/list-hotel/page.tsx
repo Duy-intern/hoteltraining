@@ -43,11 +43,11 @@ const route = useRouter();
   },[token])
 
   const handleEdit = (_id : string) =>{
-    route.push(`/hotel/provider/${_id}`)
+    route.push(`/provider/${_id}`)
   }
 
   const handleUpdate = (_id : string) =>{
-    route.push(`/hotel/provider/${_id}/status`)
+    route.push(`/provider/${_id}/status`)
   }
 
 

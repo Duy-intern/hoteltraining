@@ -27,7 +27,7 @@ const CreateHotelForm: React.FC = () => {
         }
       )
       console.log('Hotel created:', response.data);
-      route.push('/hotel/provider/list-hotel')
+      route.push('/provider/list-hotel')
     } catch (error) {
       message.error('Có lỗi xảy ra khi tạo khách sạn.');
       console.error('Error creating hotel:', error);
