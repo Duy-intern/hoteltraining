@@ -1,6 +1,7 @@
-"use client"
+"use client";
+
 import React from 'react';
-import { Form, Input, Button, InputNumber } from 'antd';
+import { Form, Input, Button, InputNumber, message } from 'antd';
 import axios from 'axios';
 
 interface HotelFormValues {
@@ -12,64 +13,72 @@ interface HotelFormValues {
 }
 
 const CreateHotelForm: React.FC = () => {
-  const [form] = Form.useForm();
+    
+  const onFinish = async (values: HotelFormValues) => {
+    try {
+      const token = localStorage.getItem('token');
 
-  const onFinish = (values: HotelFormValues) => {
-    axios.post('http://localhost:3000/hotel/provider/create-hotel', values)
-      .then((response) => {
-        console.log('Hotel created:', response.data);
-      })
-      .catch((error) => {
-        console.error('Error creating hotel:', error);
-      });
+      const response = await axios.post('http://localhost:3001/hotel/provider', values,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          }
+        }
+      )
+      message.success('Khách sạn đã được tạo thành công ');
+      console.log('Hotel created:', response.data);
+    } catch (error) {
+      message.error('Có lỗi xảy ra khi tạo khách sạn.');
+      console.error('Error creating hotel:', error);
+    }
   };
 
   return (
-    <Form form={form} onFinish={onFinish} layout="vertical">
+    <Form onFinish={onFinish} layout="vertical">
       <Form.Item
         name="name"
-        label="Hotel Name"
-        rules={[{ required: true, message: 'Please enter the hotel name' }]}
+        label="Tên khách sạn"
+        rules={[{ required: true, message: 'Vui lòng nhập tên khách sạn' }]}
       >
-        <Input placeholder="Enter hotel name" />
+        <Input placeholder="Nhập tên khách sạn" />
       </Form.Item>
 
       <Form.Item
         name="ratings"
-        label="Ratings"
+        label="Đánh giá"
         rules={[
-          { required: true, type: 'number', min: 0, max: 5, message: 'Ratings should be between 0 and 5' }
+          { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 0 đến 5' }
         ]}
       >
-        <InputNumber placeholder="Enter hotel rating (0-5)" step={0.1} />
+        <InputNumber placeholder="Nhập đánh giá khách sạn (0-5)" step={1} />
       </Form.Item>
 
       <Form.Item
         name="address"
-        label="Address"
-        rules={[{ required: true, message: 'Please enter the hotel address' }]}
+        label="Địa chỉ"
+        rules={[{ required: true, message: 'Vui lòng nhập địa chỉ khách sạn' }]}
       >
-        <Input placeholder="Enter hotel address" />
+        <Input placeholder="Nhập địa chỉ khách sạn" />
       </Form.Item>
 
       <Form.Item
         name="city"
-        label="City"
-        rules={[{ required: true, message: 'Please enter the city' }]}
+        label="Thành phố"
+        rules={[{ required: true, message: 'Vui lòng nhập thành phố' }]}
       >
-        <Input placeholder="Enter hotel city" />
+        <Input placeholder="Nhập thành phố" />
       </Form.Item>
 
       <Form.Item
         name="price"
-        label="Price"
-        rules={[{ required: true, type: 'number', min: 0, message: 'Please enter a valid price' }]}
+        label="Giá"
+        rules={[{ required: true, type: 'number', min: 0, message: 'Vui lòng nhập giá hợp lệ' }]}
       >
-        <InputNumber placeholder="Enter price per night" />
+        <InputNumber placeholder="Nhập giá mỗi đêm" />
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">Create Hotel</Button>
+        <Button type="primary" htmlType="submit">Tạo khách sạn</Button>
       </Form.Item>
     </Form>
   );

@@ -8,9 +8,8 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const items2 = [
   { key: '1', label: <Link href="/hotel/provider">Provider</Link> },
-  { key: '2', label: <Link href="/hotel/provider/create-hotel">Create Hotel</Link> },
-  { key: '3', label: <Link href="/hotel/provider/list-hotel">Hotel List</Link> },
-  { key: '4', label: <Link href="/hotel/provider/booked-hotel">Booked Hotel</Link> },
+  { key: '2', label: <Link href="/hotel/provider/list-hotel">Hotel List</Link> },
+  { key: '3', label: <Link href="/hotel/provider/booked-hotel">Booked Hotel</Link> },
 ];
 
 const ProviderLayout = ({ children }: { children: React.ReactNode }) => {
