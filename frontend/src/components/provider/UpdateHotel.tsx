@@ -13,8 +13,13 @@ interface Hotel {
   price: number;
   submitStatus: string;
 }
+interface CreateHotelFormProps {
+  onSuccess: () => void; // Callback để reload lại danh sách hotel
+  onClose: () => void;   // Callback để đóng Drawer
+}
 
-const UpdateHotel: React.FC = () => {
+
+const UpdateHotel: React.FC<CreateHotelFormProps> = ({onClose , onSuccess}) => {
   const [form] = Form.useForm(); 
   const router = useRouter();
   const { _id  } = useParams();
@@ -46,7 +51,8 @@ const UpdateHotel: React.FC = () => {
         },
       });
       message.success("Khách sạn đã được cập nhật thành công.");
-      router.push("/provider"); 
+      onSuccess();
+      onClose();
     } catch (error) {
       console.log(error);
     }

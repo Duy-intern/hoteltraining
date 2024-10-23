@@ -30,16 +30,7 @@ const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
         >
         </Menu>
       </Sider>
-      <Layout>
-        <Header className="site-layout-background" style={{ padding: 0 }}>
-        </Header>
-        <Content style={{ margin: '0 16px' }}>
-          <div style={{ padding: 24, minHeight: 360, background: '#fff' }}>
-            {children} 
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>Bản Quyền © 2024</Footer>
-      </Layout>
+      <Content>{children}</Content>
       
     </AuthProvider>
     </Layout>

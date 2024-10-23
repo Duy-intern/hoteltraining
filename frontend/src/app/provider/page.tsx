@@ -5,6 +5,7 @@ import { Button, Drawer, Layout, Table } from "antd";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/hooks/useContext";
 import CreateHotelForm from "@/components/provider/CreateHotel";
+import UpdateHotel from "@/components/provider/UpdateHotel";
 
 interface Hotel {
   _id: string;
@@ -21,6 +22,8 @@ const HotelList: React.FC = () => {
   const route = useRouter();
   const { token } = useAuth();
   const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
+
 
   const fetchHotels = async () => {
     if (!token) return;
@@ -41,7 +44,7 @@ const HotelList: React.FC = () => {
   }, [token]);
 
   const handleEdit = (_id: string) => {
-    route.push(`/provider/${_id}`);
+    setOpen1(true)
   };
 
   const handleUpdate = (_id: string) => route.push(`/provider/${_id}/details`);
@@ -52,6 +55,9 @@ const HotelList: React.FC = () => {
 
   const onClose = () => {
     setOpen(false);
+  };
+  const onClose1 = () => {
+    setOpen1(false);
   };
 
   const columns = [
@@ -103,6 +109,10 @@ const HotelList: React.FC = () => {
         <Drawer title="Create Hotel" onClose={onClose} open={open}>
           <CreateHotelForm onSuccess={fetchHotels} onClose={onClose} />
         </Drawer>
+        <Drawer title="Update Hotel" onClose={onClose1} open={open1}>
+          <UpdateHotel onSuccess={fetchHotels} onClose={onClose1} />
+        </Drawer>
+        
       </>
     </Layout>
   );

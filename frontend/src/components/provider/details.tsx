@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Layout, Typography,  } from "antd";
 import {  useParams } from "next/navigation";
+import { useAuth } from "@/components/hooks/useContext";
 
 interface Hotel {
   name: string;
@@ -17,7 +18,7 @@ const EditHotel: React.FC = () => {
 const [hotel,setHotel] = useState<Hotel | null>(null)
   const { _id } = useParams();
  
-  const token = localStorage.getItem("token");
+  const {token} = useAuth();
   useEffect(() => {
     const fetchHotel = async () => {
       if (!_id ||!token) return;
@@ -72,7 +73,7 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
           Submit Hotel
         </Button>
       )}
-        <Button style={{width:'120px'}} type="default" href="/hotel/provider/list-hotel" >
+        <Button style={{width:'120px'}} type="default" href="/provider" >
           Quay Lại
         </Button>
     
