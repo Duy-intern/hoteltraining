@@ -14,7 +14,7 @@ interface Hotel {
   submitStatus: string;
 }
 
-const EditHotel: React.FC = () => {
+const UpdateHotel: React.FC = () => {
   const [form] = Form.useForm(); 
   const router = useRouter();
   const { _id  } = useParams();
@@ -108,4 +108,4 @@ const EditHotel: React.FC = () => {
 );
 };
 
-export default EditHotel;
+export default UpdateHotel;

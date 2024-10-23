@@ -1,88 +1,111 @@
 "use client";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Button, Drawer, Layout, Table } from "antd";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/components/hooks/useContext";
+import CreateHotelForm from "@/components/provider/CreateHotel";
 
-import React from 'react';
-import { Form, Input, Button, InputNumber, message } from 'antd';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-
-interface HotelFormValues {
+interface Hotel {
+  _id: string;
   name: string;
   ratings: number;
   address: string;
   city: string;
   price: number;
+  submitStatus: string;
 }
 
-const CreateHotelForm: React.FC = () => {
-    const route= useRouter();
-  const onFinish = async (values: HotelFormValues) => {
+const HotelList: React.FC = () => {
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+  const route = useRouter();
+  const { token } = useAuth();
+  const [open, setOpen] = useState(false);
+
+  const fetchHotels = async () => {
+    if (!token) return;
     try {
-      const token = localStorage.getItem('token');
-      
-      const response = await axios.post('http://localhost:3001/hotel/provider', values,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, 
-          }
-        }
-      )
-      console.log('Hotel created:', response.data);
-      route.push('/provider/list-hotel')
+      const response = await axios.get("http://localhost:3001/hotel/provider", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setHotels(response.data);
     } catch (error) {
-      message.error('Có lỗi xảy ra khi tạo khách sạn.');
-      console.error('Error creating hotel:', error);
+      console.log("Không lấy được dữ liệu", error);
     }
   };
 
+  useEffect(() => {
+    fetchHotels();
+  }, [token]);
+
+  const handleEdit = (_id: string) => {
+    route.push(`/provider/${_id}`);
+  };
+
+  const handleUpdate = (_id: string) => route.push(`/provider/${_id}/details`);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+  const columns = [
+    {
+      title: "Tên Khách Sạn",
+      dataIndex: "name",
+      key: "name",
+      render: (text: string) => <a href="#">{text}</a>,
+    },
+    {
+      title: "Địa Chỉ",
+      dataIndex: "address",
+      key: "address",
+    },
+    {
+      title: "Thành Phố",
+      dataIndex: "city",
+      key: "city",
+    },
+    {
+      title: "Giá",
+      dataIndex: "price",
+      key: "price",
+      render: (text: number) => `${text} USD`,
+    },
+    {
+      title: "Hành Động",
+      key: "action",
+      render: (_: unknown, record: Hotel) => (
+        <>
+          <Button type="primary" onClick={() => handleEdit(record._id)}>
+            Update
+          </Button>
+          <Button type="default" onClick={() => handleUpdate(record._id)}>
+            Details
+          </Button>
+        </>
+      ),
+    },
+  ];
+
   return (
-    <Form onFinish={onFinish} layout="vertical">
-      <Form.Item
-        name="name"
-        label="Tên khách sạn"
-        rules={[{ required: true, message: 'Vui lòng nhập tên khách sạn' }]}
-      >
-        <Input placeholder="Nhập tên khách sạn" />
-      </Form.Item>
-
-      <Form.Item
-        name="ratings"
-        label="Đánh giá"
-        rules={[
-          { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 1 đến 5' }
-        ]}
-      >
-        <InputNumber placeholder="Nhập đánh giá khách sạn (0-5)" step={1} />
-      </Form.Item>
-
-      <Form.Item
-        name="address"
-        label="Địa chỉ"
-        rules={[{ required: true, message: 'Vui lòng nhập địa chỉ khách sạn' }]}
-      >
-        <Input placeholder="Nhập địa chỉ khách sạn" />
-      </Form.Item>
-
-      <Form.Item
-        name="city"
-        label="Thành phố"
-        rules={[{ required: true, message: 'Vui lòng nhập thành phố' }]}
-      >
-        <Input placeholder="Nhập thành phố" />
-      </Form.Item>
-
-      <Form.Item
-        name="price"
-        label="Giá"
-        rules={[{ required: true, type: 'number', min: 0, message: 'Vui lòng nhập giá hợp lệ' }]}
-      >
-        <InputNumber placeholder="Nhập giá mỗi đêm" />
-      </Form.Item>
-
-      <Form.Item>
-        <Button type="primary" htmlType="submit">Tạo khách sạn</Button>
-      </Form.Item>
-    </Form>
+    <Layout>
+      <Table dataSource={hotels} columns={columns} rowKey="_id" />
+      <>
+        <Button style={{ width: "120px" }} type="primary" onClick={showDrawer}>
+          Create Hotel
+        </Button>
+        <Drawer title="Create Hotel" onClose={onClose} open={open}>
+          <CreateHotelForm onSuccess={fetchHotels} onClose={onClose} />
+        </Drawer>
+      </>
+    </Layout>
   );
 };
 
-export default CreateHotelForm;
+export default HotelList;

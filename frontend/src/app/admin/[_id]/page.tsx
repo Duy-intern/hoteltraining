@@ -19,11 +19,12 @@ const EditHotel: React.FC = () => {
   const router = useRouter();
   const { _id  } = useParams();
   const {token} = useAuth();
+
   useEffect(() => {
     const fetchHotel = async () => {
       if (!_id || !token) return;
       try {
-        const response = await axios.get(`http://localhost:3001/hotel/provider/${_id}`, {
+        const response = await axios.get(`http://localhost:3001/hotel/admin/${_id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -40,13 +41,13 @@ const EditHotel: React.FC = () => {
   const onFinish = async (values: Hotel) => {
     
     try {
-      await axios.patch(`http://localhost:3001/hotel/provider/${_id}`, values, {
+      await axios.patch(`http://localhost:3001/hotel/admin/${_id}`, values, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       message.success("Khách sạn đã được cập nhật thành công.");
-      router.push("/provider"); 
+      router.push("/admin"); 
     } catch (error) {
       console.log(error);
     }

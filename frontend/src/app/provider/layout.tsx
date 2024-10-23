@@ -1,53 +1,37 @@
-// /app/provider/layout.tsx
-"use client";
-import React from 'react';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+'use client'
+import React, { ReactNode } from 'react'; 
+import { Layout, Menu } from 'antd';
 import Link from 'next/link';
+import { AuthProvider } from '@/components/hooks/useContext';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Sider, Content, Footer } = Layout;
 
-const items2 = [
+interface MyLayoutProps {
+  children: ReactNode; 
+}
+
+const items = [
   { key: '1', label: <Link href="/provider">Create Hotel</Link> },
   { key: '2', label: <Link href="/provider/list-hotel">Hotel List</Link> },
   { key: '3', label: <Link href="/provider/booked-hotel">Booked Hotel</Link> },
 ];
-
-const ProviderLayout = ({ children }: { children: React.ReactNode }) => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
+const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
   return (
-    <Layout >
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
-        <div className="demo-logo" />
-        <Menu theme="dark" mode="horizontal" style={{ flex: 1, minWidth: 0 }} />
-      </Header>
-      <Content style={{ padding: '0 48px' }}>
-        <Layout
-          style={{
-            padding: '24px 0',
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
+    
+    <Layout style={{ minHeight: '100vh' }}> 
+      <Sider width={200} className="site-layout-background">
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={['1']}
+          style={{ height: '100%', borderRight: 0 }}
+          items={items}
         >
-          <Sider style={{ background: colorBgContainer }} width={200}>
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%' }}
-              items={items2}
-            />
-          </Sider>
-          <Content style={{ padding: '0 24px', minHeight: 280 }}>{children}</Content>
-        </Layout>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
-      </Footer>
+        </Menu>
+      </Sider>
+    <Content style={{padding: '5px'}}>{children}</Content>
     </Layout>
   );
 };
 
-export default ProviderLayout;
+export default MyLayout;
+

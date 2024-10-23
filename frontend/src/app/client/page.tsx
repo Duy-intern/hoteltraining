@@ -19,11 +19,12 @@ const HotelList: React.FC = () => {
   const [hotels,setHotels] = useState<Hotel[]>([]);
 const route = useRouter();
 const {token} = useAuth();
-useEffect (() => {
+
+  useEffect (() => {
     const fecthHotels = async () =>{
         if(!token) return;
       try{
-        const response = await axios.get('http://localhost:3001/hotel/admin',{
+        const response = await axios.get('http://localhost:3001/hotel/client',{
           headers: {
             Authorization: `Bearer ${token}`, 
           },
@@ -37,12 +38,8 @@ useEffect (() => {
     fecthHotels();
   },[token])
 
-  const handleEdit = (_id : string) =>{
-    route.push(`/admin/${_id}`)
-  }
-
-  const handleUpdate = (_id : string) =>{
-    route.push(`/admin/${_id}/details`)
+  const handleDetails = (_id : string) =>{
+    route.push(`/client/${_id}`)
   }
 
   const columns = [
@@ -72,28 +69,23 @@ useEffect (() => {
       title: "Hành Động",
       key: "action",
       render: (_: unknown, record: Hotel) => (
-        <> 
-        {record.submitStatus === 'submitted' && (
-            <Button key={record._id} type="primary" onClick={() => handleEdit(record._id)}>
-              Update
-            </Button>
-          )}
-          <Button  key={record._id} type="primary" onClick={() => handleUpdate(record._id)}> Details</Button>
-          
+        <>
+          <Button type="primary" onClick={() => handleDetails(record._id)}>Details</Button>
         </>
       ),
     },
   ];
 
-
   return (
     <Layout>
-    <Table
-      dataSource={hotels}
-      columns={columns}
-      rowKey="_id"
-    />
-  </Layout>
+
+      <Table
+        dataSource={hotels}
+        columns={columns}
+        rowKey="_id"
+      />
+  
+    </Layout>
 
   );
 };

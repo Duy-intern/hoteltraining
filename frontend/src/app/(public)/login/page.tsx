@@ -1,7 +1,6 @@
 "use client"
-import React from 'react';
 import type { FormProps } from 'antd';
-import { Button, Form, Input, Layout } from 'antd';
+import { Button, Form, Input, Layout, message } from 'antd';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
@@ -10,8 +9,6 @@ type FieldType = {
   password?: string;
 };
 
-
-
 const Login: React.FC = () => {
   const route = useRouter();
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
@@ -19,8 +16,8 @@ const Login: React.FC = () => {
       const response = await axios.post('http://localhost:3001/auth',values)
       localStorage.setItem('token',response.data.accessToken);
       console.log("suscess: ",response.data)
-      route.push('/provider')
-      console.log(localStorage.getItem('token'))
+      message.success('Đăng nhập thành công!')
+      route.push('/')
     }catch(error){
       console.log("Error",error)
     }
