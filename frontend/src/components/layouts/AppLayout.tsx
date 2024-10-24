@@ -19,7 +19,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <Layout>
             <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ color: '#fff' }}>My App</div>
+            <div style={{ color: '#fff' }}>HOTEL BOOKING</div>
             <Menu
               theme="dark"
               mode="horizontal"

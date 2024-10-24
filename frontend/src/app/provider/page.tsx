@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Drawer, Layout, Table } from "antd";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/hooks/useContext";
 import CreateHotelForm from "@/components/provider/CreateHotel";
-import UpdateHotel from "@/components/provider/UpdateHotel";
 
 interface Hotel {
   _id: string;
@@ -22,10 +21,8 @@ const HotelList: React.FC = () => {
   const route = useRouter();
   const { token } = useAuth();
   const [open, setOpen] = useState(false);
-  const [open1, setOpen1] = useState(false);
 
-
-  const fetchHotels = async () => {
+  const fetchHotels = useCallback (async () => {
     if (!token) return;
     try {
       const response = await axios.get("http://localhost:3001/hotel/provider", {
@@ -37,17 +34,15 @@ const HotelList: React.FC = () => {
     } catch (error) {
       console.log("Không lấy được dữ liệu", error);
     }
-  };
+  },[token]);
 
   useEffect(() => {
     fetchHotels();
-  }, [token]);
+  }, [fetchHotels]);
 
-  const handleEdit = (_id: string) => {
-    setOpen1(true)
-  };
+  const handleUpdate = (_id: string) => route.push(`/provider/${_id}`);
 
-  const handleUpdate = (_id: string) => route.push(`/provider/${_id}/details`);
+  const handleDetails = (_id: string) => route.push(`/provider/${_id}/details`);
 
   const showDrawer = () => {
     setOpen(true);
@@ -55,9 +50,6 @@ const HotelList: React.FC = () => {
 
   const onClose = () => {
     setOpen(false);
-  };
-  const onClose1 = () => {
-    setOpen1(false);
   };
 
   const columns = [
@@ -88,10 +80,10 @@ const HotelList: React.FC = () => {
       key: "action",
       render: (_: unknown, record: Hotel) => (
         <>
-          <Button type="primary" onClick={() => handleEdit(record._id)}>
+          <Button type="primary" onClick={() => handleUpdate(record._id)}>
             Update
           </Button>
-          <Button type="default" onClick={() => handleUpdate(record._id)}>
+          <Button type="default" onClick={() => handleDetails(record._id)}>
             Details
           </Button>
         </>
@@ -108,9 +100,6 @@ const HotelList: React.FC = () => {
         </Button>
         <Drawer title="Create Hotel" onClose={onClose} open={open}>
           <CreateHotelForm onSuccess={fetchHotels} onClose={onClose} />
-        </Drawer>
-        <Drawer title="Update Hotel" onClose={onClose1} open={open1}>
-          <UpdateHotel onSuccess={fetchHotels} onClose={onClose1} />
         </Drawer>
         
       </>

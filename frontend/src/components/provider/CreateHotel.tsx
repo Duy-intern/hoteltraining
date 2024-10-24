@@ -3,7 +3,6 @@
 import React from 'react';
 import { Form, Input, Button, InputNumber, message } from 'antd';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/hooks/useContext';
 
 interface HotelFormValues {
@@ -15,12 +14,11 @@ interface HotelFormValues {
 }
 
 interface CreateHotelFormProps {
-  onSuccess: () => void; // Callback để reload lại danh sách hotel
-  onClose: () => void;   // Callback để đóng Drawer
+  onSuccess: () => Promise<void>;
+  onClose: () => void;
 }
 
 const CreateHotelForm: React.FC<CreateHotelFormProps> = ({ onSuccess, onClose }) => {
-    const route= useRouter();
     const {token} = useAuth();
   const onFinish = async (values: HotelFormValues) => {
     try {

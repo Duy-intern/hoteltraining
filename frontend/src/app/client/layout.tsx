@@ -4,7 +4,7 @@ import { Layout, Menu } from 'antd';
 import Link from 'next/link';
 import { AuthProvider } from '@/components/hooks/useContext';
 
-const { Header, Sider, Content, Footer } = Layout;
+const {  Sider, Content } = Layout;
 
 interface MyLayoutProps {
   children: ReactNode; 

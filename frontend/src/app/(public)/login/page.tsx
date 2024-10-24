@@ -1,4 +1,5 @@
 "use client"
+import { useAuth } from '@/components/hooks/useContext';
 import type { FormProps } from 'antd';
 import { Button, Form, Input, Layout, message } from 'antd';
 import axios from 'axios';
@@ -11,15 +12,41 @@ type FieldType = {
 
 const Login: React.FC = () => {
   const route = useRouter();
+  const {login} = useAuth();
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     try{
       const response = await axios.post('http://localhost:3001/auth',values)
-      localStorage.setItem('token',response.data.accessToken);
-      console.log("suscess: ",response.data)
-      message.success('Đăng nhập thành công!')
-      route.push('/')
+
+      const token = response.data.accessToken;
+      const userInfo = {  accountType : response.data.accountType }; 
+      login(token);
+      console.log(userInfo); 
+     console.log(response.data.role);
+      message.success('Đăng nhập thành công!');
+      switch (userInfo.accountType) {
+        case 'client':
+          route.push('/client');
+          break;
+        case 'provider':
+          route.push('/provider');
+          break;
+        case 'admin':
+          route.push('/admin');
+          break;
+        default:
+          route.push('/');
+      }
     }catch(error){
-      console.log("Error",error)
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.status === 401) {
+          message.error('Tên đăng nhập hoặc mật khẩu không chính xác!');
+        } else {
+          message.error('Có lỗi xảy ra. Vui lòng thử lại!');
+        }
+      } else {
+        message.error('Có lỗi xảy ra. Vui lòng thử lại!');
+      }
+      console.log("Error", error);
     }
   };
   
@@ -55,7 +82,7 @@ const Login: React.FC = () => {
     </Form.Item>
     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
       <Button type="primary" htmlType="submit">
-        Submit
+        Login
       </Button>
       
     </Form.Item>

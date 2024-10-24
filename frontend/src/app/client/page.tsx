@@ -38,8 +38,10 @@ const {token} = useAuth();
     fecthHotels();
   },[token])
 
+
   const handleDetails = (_id : string) =>{
     route.push(`/client/${_id}`)
+
   }
 
   const columns = [
@@ -70,7 +72,7 @@ const {token} = useAuth();
       key: "action",
       render: (_: unknown, record: Hotel) => (
         <>
-          <Button type="primary" onClick={() => handleDetails(record._id)}>Update</Button>
+          <Button type="primary" onClick={() => handleDetails(record._id)}>Details</Button>
         </>
       ),
     },

@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { Form, Input, InputNumber, Button, message, Layout } from "antd";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/components/hooks/useContext";
 
 interface Hotel {
@@ -13,15 +13,12 @@ interface Hotel {
   price: number;
   submitStatus: string;
 }
-interface CreateHotelFormProps {
-  onSuccess: () => void; 
-  onClose: () => void;  
-}
 
 
-const UpdateHotel: React.FC<CreateHotelFormProps> = ({onClose , onSuccess}) => {
+const UpdateHotel: React.FC = () => {
   const [form] = Form.useForm(); 
   const { _id  } = useParams();
+  const router = useRouter();
   const {token} = useAuth();
   useEffect(() => {
     const fetchHotel = async () => {
@@ -51,8 +48,7 @@ const UpdateHotel: React.FC<CreateHotelFormProps> = ({onClose , onSuccess}) => {
         },
       });
       message.success("Khách sạn đã được cập nhật thành công.");
-      onSuccess();
-      onClose();
+      router.push('/provider')
     } catch (error) {
       console.log(error);
     }
