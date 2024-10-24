@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { Form, Input, InputNumber, Button, message, Layout } from "antd";
-import { useParams } from "next/navigation";
 import { useAuth } from "@/components/hooks/useContext";
 
 interface Hotel {
@@ -14,14 +13,14 @@ interface Hotel {
   submitStatus: string;
 }
 interface CreateHotelFormProps {
+  _id: string; 
   onSuccess: () => void; 
   onClose: () => void;  
 }
 
 
-const UpdateHotel: React.FC<CreateHotelFormProps> = ({onClose , onSuccess}) => {
+const UpdateHotel: React.FC<CreateHotelFormProps> = ({_id,  onClose , onSuccess}) => {
   const [form] = Form.useForm(); 
-  const { _id  } = useParams();
   const {token} = useAuth();
   useEffect(() => {
     const fetchHotel = async () => {

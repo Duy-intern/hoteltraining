@@ -20,8 +20,6 @@ const Login: React.FC = () => {
       const token = response.data.accessToken;
       const userInfo = {  accountType : response.data.accountType }; 
       login(token);
-      console.log(userInfo); 
-     console.log(response.data.role);
       message.success('Đăng nhập thành công!');
       switch (userInfo.accountType) {
         case 'client':

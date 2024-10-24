@@ -5,6 +5,7 @@ import { Button, Drawer, Layout, Table } from "antd";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/hooks/useContext";
 import CreateHotelForm from "@/components/provider/CreateHotel";
+import UpdateHotel from "@/components/provider/UpdateHotel";
 
 interface Hotel {
   _id: string;
@@ -21,6 +22,10 @@ const HotelList: React.FC = () => {
   const route = useRouter();
   const { token } = useAuth();
   const [open, setOpen] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
+  const [selectedHotelId, setSelectedHotelId] = useState<string | null>(null);
+
+
 
   const fetchHotels = useCallback (async () => {
     if (!token) return;
@@ -40,7 +45,7 @@ const HotelList: React.FC = () => {
     fetchHotels();
   }, [fetchHotels]);
 
-  const handleUpdate = (_id: string) => route.push(`/provider/${_id}`);
+  // const handleUpdate = (_id: string) => route.push(`/provider/${_id}`);
 
   const handleDetails = (_id: string) => route.push(`/provider/${_id}/details`);
 
@@ -48,8 +53,20 @@ const HotelList: React.FC = () => {
     setOpen(true);
   };
 
+  const handleUpdate = (_id: string) => {
+    console.log(_id)
+    setSelectedHotelId(_id);
+    setOpenUpdate(true); 
+  };
+
+
   const onClose = () => {
     setOpen(false);
+  };
+
+  const onCloseUpdate = () => {
+    setOpenUpdate(false);
+    setSelectedHotelId(null); 
   };
 
   const columns = [
@@ -98,8 +115,18 @@ const HotelList: React.FC = () => {
         <Button style={{ width: "120px" }} type="primary" onClick={showDrawer}>
           Create Hotel
         </Button>
-        <Drawer title="Create Hotel" onClose={onClose} open={open}>
+        <Drawer  width={720} title="Create Hotel" onClose={onClose} open={open}>
           <CreateHotelForm onSuccess={fetchHotels} onClose={onClose} />
+        </Drawer>
+        <Drawer
+          title="Update Hotel"
+          onClose={onCloseUpdate}
+          open={openUpdate}
+          width={720} 
+        >
+          {selectedHotelId && (
+            <UpdateHotel _id={selectedHotelId} onClose={onCloseUpdate} onSuccess={fetchHotels} />
+          )}
         </Drawer>
         
       </>
