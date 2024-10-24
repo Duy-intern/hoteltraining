@@ -11,9 +11,8 @@ interface MyLayoutProps {
 }
 
 const items = [
-    { key: '1', label: <Link href="/client">Hotel</Link> },
-    { key: '2', label: <Link href="/client">Hotel List</Link> },
-    { key: '3', label: <Link href="/client">Booked Hotel</Link> },
+    { key: '1', label: <Link href="/client">Hotel List</Link> },
+    { key: '2', label: <Link href="/client/booking">Booked Hotel</Link> },
   ];
 const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
   return (

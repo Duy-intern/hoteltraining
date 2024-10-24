@@ -15,7 +15,7 @@ const items = [
   ];
 
 const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { token, user, logout } = useAuth(); 
+    const { token, logout } = useAuth(); 
   return (
     <Layout>
             <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -33,7 +33,6 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </div>
           ) : (
             <div>
-              <span style={{ color: '#fff', marginRight: '1rem' }}>{user?.email}</span>
               <Button type="primary" onClick={logout}>Logout</Button> 
             </div>
           )}

@@ -68,8 +68,7 @@ const handelBook = async (_id :string , price:number) =>{
     return <div>Loading</div>
   }
   return (
-    <Layout>
-    <h1>Chỉnh sửa khách sạn</h1>
+    <Layout style={{background: '#ffffff', padding: '5px'}} >
     <Typography.Title>Chi Tiết Khách Sạn</Typography.Title>
       <Typography.Text>Tên Khách Sạn: {hotel.name}</Typography.Text>
       <Typography.Text>Đánh giá: {hotel.ratings}</Typography.Text>

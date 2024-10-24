@@ -55,8 +55,7 @@ const UpdateHotel: React.FC = () => {
   };
 
   return (
-    <Layout>
-    <h1>Chỉnh sửa khách sạn</h1>
+    <Layout style={{background: '#ffffff', padding:'5px'}}>
     <Form form={form} onFinish={onFinish} layout="vertical">
       <Form.Item
         name="name"
@@ -102,6 +101,7 @@ const UpdateHotel: React.FC = () => {
 
       <Form.Item>
         <Button type="primary" htmlType="submit">Update Hotel</Button>
+   
 
       </Form.Item>
     </Form>
