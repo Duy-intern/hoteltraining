@@ -54,7 +54,6 @@ const HotelList: React.FC = () => {
   };
 
   const handleUpdate = (_id: string) => {
-    console.log(_id)
     setSelectedHotelId(_id);
     setOpenUpdate(true); 
   };
@@ -63,6 +62,8 @@ const HotelList: React.FC = () => {
   const onClose = () => {
     setOpen(false);
   };
+
+
 
   const onCloseUpdate = () => {
     setOpenUpdate(false);
@@ -118,14 +119,9 @@ const HotelList: React.FC = () => {
         <Drawer  width={720} title="Create Hotel" onClose={onClose} open={open}>
           <CreateHotelForm onSuccess={fetchHotels} onClose={onClose} />
         </Drawer>
-        <Drawer
-          title="Update Hotel"
-          onClose={onCloseUpdate}
-          open={openUpdate}
-          width={720} 
-        >
+        <Drawer title="Update Hotel"  onClose={onCloseUpdate} open={openUpdate} width={720}>
           {selectedHotelId && (
-            <UpdateHotel _id={selectedHotelId} onClose={onCloseUpdate} onSuccess={fetchHotels} />
+            <UpdateHotel _id={selectedHotelId} onClose={onCloseUpdate} onSuccess={fetchHotels}    />
           )}
         </Drawer>
         

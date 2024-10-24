@@ -4,7 +4,7 @@ import { Layout, Menu } from 'antd';
 import Link from 'next/link';
 import { AuthProvider } from '@/components/hooks/useContext';
 
-const { Header, Sider, Content, Footer } = Layout;
+const { Sider, Content } = Layout;
 
 interface MyLayoutProps {
   children: ReactNode; 
@@ -12,9 +12,7 @@ interface MyLayoutProps {
 
 
 const items = [
-  { key: '1', label: <Link href="/admin">Hotel</Link> },
-  { key: '2', label: <Link href="/admin">Hotel List</Link> },
-  { key: '3', label: <Link href="/admin">Booked Hotel</Link> },
+  { key: '1', label: <Link href="/admin">Hotel List</Link> },
 ];
 
 const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
@@ -32,17 +30,7 @@ const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
         >
         </Menu>
       </Sider>
-      <Layout>
-        <Header className="site-layout-background" style={{ padding: 0 }}>
-        </Header>
-        <Content style={{ margin: '0 16px' }}>
-          <div style={{ padding: 24, minHeight: 360, background: '#fff' }}>
-            {children} 
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>Bản Quyền © 2024</Footer>
-      </Layout>
-      
+      <Content>{children}</Content>
     </AuthProvider>
     </Layout>
   );

@@ -29,7 +29,6 @@ const EditHotel: React.FC = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(response.data)
         form.setFieldsValue(response.data); 
       } catch (error) {
         console.log(error)
@@ -98,7 +97,6 @@ const EditHotel: React.FC = () => {
       >
         <InputNumber placeholder="Nhập giá mỗi đêm" />
       </Form.Item>
-
       <Form.Item>
         <Button type="primary" htmlType="submit">Update Hotel</Button>
 

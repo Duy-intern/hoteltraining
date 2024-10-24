@@ -59,7 +59,7 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
   }
   return (
     <Layout>
-    <h1>Chỉnh sửa khách sạn</h1>
+    
     <Typography.Title>Chi Tiết Khách Sạn</Typography.Title>
       <Typography.Text>Tên Khách Sạn: {hotel.name}</Typography.Text>
       <Typography.Text>Đánh giá: {hotel.ratings}</Typography.Text>

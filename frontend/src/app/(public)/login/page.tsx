@@ -47,10 +47,6 @@ const Login: React.FC = () => {
       console.log("Error", error);
     }
   };
-  
-  const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
   return(
     <Layout  style={{ minHeight: '100vh', backgroundColor: '#f0f2f5',justifyContent:'center', alignItems:'center' }}>
   <Form
@@ -60,7 +56,6 @@ const Login: React.FC = () => {
     style={{ maxWidth: 600 , alignItems:'center',justifyContent:'center'}}
     initialValues={{ remember: true }}
     onFinish={onFinish}
-    onFinishFailed={onFinishFailed}
     autoComplete="off"
   >
     <Form.Item<FieldType>

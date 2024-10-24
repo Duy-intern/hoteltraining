@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react';
 import { Layout, Menu } from 'antd';
 import Link from 'next/link';
 import { AuthProvider } from '@/components/hooks/useContext';
+import { usePathname } from 'next/navigation';
 
 const {  Sider, Content } = Layout;
 
@@ -11,19 +12,20 @@ interface MyLayoutProps {
 }
 
 const items = [
-    { key: '1', label: <Link href="/client">Hotel List</Link> },
-    { key: '2', label: <Link href="/client/booking">Booked Hotel</Link> },
+    { key: '/client', label: <Link href="/client">Hotel List</Link> },
+    { key: '/client/booking', label: <Link href="/client/booking">Booked Hotel</Link> },
   ];
 const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
-  return (
+  const pathname = usePathname(); 
+
+   return (
     
     <Layout style={{ minHeight: '100vh' }}>
          <AuthProvider>
-      
       <Sider width={200} className="site-layout-background">
         <Menu
           mode="inline"
-          defaultSelectedKeys={['1']}
+         selectedKeys={[pathname]}
           style={{ height: '100%', borderRight: 0 }}
           items={items}
         >

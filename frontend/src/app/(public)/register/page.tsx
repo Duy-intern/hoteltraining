@@ -25,9 +25,7 @@ const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
   }
 };
 
-const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-  console.log('Failed:', errorInfo);
-};
+
 
   return(
   
@@ -39,7 +37,6 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
   style={{ maxWidth: 600 , alignItems:'center',justifyContent:'center'}}
   initialValues={{ remember: true }}
   onFinish={onFinish}
-  onFinishFailed={onFinishFailed}
   autoComplete="off"
 >
   <Form.Item<FieldType>

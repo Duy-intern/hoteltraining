@@ -10,8 +10,8 @@ const App: React.FC = () => {
     <Content>
            <Image 
            alt="example"
-           src="https://images7.alphacoders.com/362/thumb-1920-362619.jpg"
-           style={{ width: '100%', height: 'auto', objectFit: 'contain' }}/>   
+           src="https://wallpapercave.com/wp/wp1846066.jpg"
+           style={{ width: '100%', height: '100%', objectFit: 'contain' }}/>   
       </Content>
       
     </Layout>
