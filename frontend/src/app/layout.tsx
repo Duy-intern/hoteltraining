@@ -37,7 +37,6 @@
             {children}
             </AppLayout>
             </AuthProvider>
-          
         </body>
       </html>
     );

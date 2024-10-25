@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Layout, Table } from 'antd';
 import { useAuth } from '@/components/hooks/useContext';
+import Link from 'next/link';
 
 interface Hotel {
   _id: string;
@@ -49,7 +50,7 @@ const {token} = useAuth();
       title: "Tên Khách Sạn",
       dataIndex: "name",
       key: "name",
-      render: (text: string) => <a href="#">{text}</a>,
+      render: (text: string) => <Link href="#">{text}</Link>,
     },
     {
       title: "Địa Chỉ",
@@ -71,9 +72,8 @@ const {token} = useAuth();
       title: "Hành Động",
       key: "action",
       render: (_: unknown, record: Hotel) => (
-        <>
-          <Button type="primary" onClick={() => handleDetails(record._id)}>Details</Button>
-        </>
+     <Button type="primary" onClick={() => handleDetails(record._id)}>Details</Button>
+    
       ),
     },
   ];
