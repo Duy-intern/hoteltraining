@@ -72,29 +72,27 @@ useEffect (() => {
       title: "Hành Động",
       key: "action",
       render: (_: unknown, record: Hotel) => (
-        <> 
+        <div style={{display:'flex', gap:'4px'}}> 
         {record.submitStatus === 'submitted' && (
             <Button key={record._id} type="primary" onClick={() => handleEdit(record._id)}>
               Update
             </Button>
           )}
-          <Button  key={record._id} type="primary" onClick={() => handleUpdate(record._id)}> Details</Button>
-          
-        </>
+          <Button  key={record._id} type="default" onClick={() => handleUpdate(record._id)}> Details</Button>
+        </div>
       ),
     },
   ];
 
 
   return (
-    <Layout>
+    <Layout style={{padding :'5px'}}>
     <Table
       dataSource={hotels}
       columns={columns}
       rowKey="_id"
     />
   </Layout>
-
   );
 };
 

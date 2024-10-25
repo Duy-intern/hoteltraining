@@ -68,19 +68,22 @@ const handelBook = async (_id :string , price:number) =>{
     return <div>Loading</div>
   }
   return (
-    <Layout style={{background: '#ffffff', padding: '5px'}} >
+    <Layout style={{background: '#ffffff', margin: '5px' , padding: '5px'}} >
     <Typography.Title>Chi Tiết Khách Sạn</Typography.Title>
       <Typography.Text>Tên Khách Sạn: {hotel.name}</Typography.Text>
       <Typography.Text>Đánh giá: {hotel.ratings}</Typography.Text>
       <Typography.Text>Địa chỉ: {hotel.address}</Typography.Text>
       <Typography.Text>Thành Phố: {hotel.city}</Typography.Text>
       <Typography.Text>Giá: {hotel.price}</Typography.Text>
+      <div style={{display:'flex', justifyContent:'space-between'}}>
       <Button style={{width:'120px'}} type="primary" onClick={() => handelBook(hotel._id,hotel.price)} >
           Book Hotel
         </Button>
-        <Button style={{width:'120px'}} type="default" onClick={handelBack} >
+        <Button style={{width:'120px'}} type="default" danger onClick={handelBack} >
           Quay Lại
         </Button>
+      </div>
+    
     
   </Layout>
 );

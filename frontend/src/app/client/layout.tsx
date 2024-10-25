@@ -2,7 +2,6 @@
 import React, { ReactNode } from 'react'; 
 import { Layout, Menu } from 'antd';
 import Link from 'next/link';
-import { AuthProvider } from '@/components/hooks/useContext';
 import { usePathname } from 'next/navigation';
 
 const {  Sider, Content } = Layout;
@@ -19,21 +18,19 @@ const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
   const pathname = usePathname(); 
 
    return (
-    
     <Layout style={{ minHeight: '100vh' }}>
-         <AuthProvider>
-      <Sider width={200} className="site-layout-background">
+         
+      <Sider width={200}>
         <Menu
           mode="inline"
          selectedKeys={[pathname]}
-          style={{ height: '100%', borderRight: 0 }}
+          style={{ height: '100%'}}
           items={items}
         >
         </Menu>
       </Sider>
       <Content>{children}</Content>
-      
-    </AuthProvider>
+
     </Layout>
   );
 };

@@ -1,10 +1,10 @@
   "use client";
   import React, { useEffect, useState } from 'react';
   import axios from 'axios';
-  import { Button, Layout, Table } from 'antd';
+  import {  Layout, Table } from 'antd';
 
   import { useAuth } from '@/components/hooks/useContext';
-import { useRouter } from 'next/navigation';
+
 
   interface Hotel {
     _id: string;
@@ -17,7 +17,7 @@ import { useRouter } from 'next/navigation';
 
   const HotelList: React.FC = () => {
     const [hotels,setHotels] = useState<Hotel[]>([]);
-    const router = useRouter();
+
   const {token} = useAuth();
   useEffect (() => {
       const fecthHotels = async () =>{
@@ -36,9 +36,8 @@ import { useRouter } from 'next/navigation';
       fecthHotels();
     },[token])
 
-  const handleDetails = (hotelID:string)=>{
-    router.push(`booking/${hotelID}`)
-  }
+
+  
 
     const columns = [
       {
@@ -65,17 +64,7 @@ import { useRouter } from 'next/navigation';
         key: "alreadyPaid",
         render: (text: boolean) => (text ? "Có" : "Không"), 
       },
-      {
-        title: "Hành Động",
-        key: "action",
-        render: (_:unknown,record: Hotel) => (
-          <>
-            <Button type="primary"onClick={() => handleDetails(record.hotel._id)}>
-              Chi tiết
-             </Button>
-          </>
-        ),
-      },
+    
     ];
     
 

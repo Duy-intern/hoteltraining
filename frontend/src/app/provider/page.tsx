@@ -1,8 +1,8 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Drawer, Layout, Table } from "antd";
-import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/hooks/useContext";
 import CreateHotelForm from "@/components/provider/CreateHotel";
 import UpdateHotel from "@/components/provider/UpdateHotel";
@@ -44,8 +44,6 @@ const HotelList: React.FC = () => {
   useEffect(() => {
     fetchHotels();
   }, [fetchHotels]);
-
-  // const handleUpdate = (_id: string) => route.push(`/provider/${_id}`);
 
   const handleDetails = (_id: string) => route.push(`/provider/${_id}/details`);
 
@@ -97,35 +95,34 @@ const HotelList: React.FC = () => {
       title: "Hành Động",
       key: "action",
       render: (_: unknown, record: Hotel) => (
-        <>
+        <div style={{display: 'flex', gap:'4px'}}>
           <Button type="primary" onClick={() => handleUpdate(record._id)}>
             Update
           </Button>
           <Button type="default" onClick={() => handleDetails(record._id)}>
             Details
           </Button>
-        </>
+        </div>
       ),
     },
   ];
 
   return (
     <Layout>
-      <Table dataSource={hotels} columns={columns} rowKey="_id" />
-      <>
-        <Button style={{ width: "120px" }} type="primary" onClick={showDrawer}>
+      <div style={{display:'flex', justifyContent:'end'}}>
+      <Button style={{ margin: '5px 50px 12px 0px' }} type="primary" onClick={showDrawer}>
           Create Hotel
         </Button>
+      </div>
+      <Table dataSource={hotels} columns={columns} rowKey="_id" />
         <Drawer  width={720} title="Create Hotel" onClose={onClose} open={open}>
           <CreateHotelForm onSuccess={fetchHotels} onClose={onClose} />
         </Drawer>
         <Drawer title="Update Hotel"  onClose={onCloseUpdate} open={openUpdate} width={720}>
           {selectedHotelId && (
-            <UpdateHotel _id={selectedHotelId} onClose={onCloseUpdate} onSuccess={fetchHotels}    />
+            <UpdateHotel _id={selectedHotelId} onClose={onCloseUpdate} onSuccess={fetchHotels}/>
           )}
         </Drawer>
-        
-      </>
     </Layout>
   );
 };

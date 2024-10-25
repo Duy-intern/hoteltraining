@@ -58,9 +58,8 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
     return <div>Loading</div>
   }
   return (
-    <Layout>
-    
-    <Typography.Title>Chi Tiết Khách Sạn</Typography.Title>
+    <Layout style={{background:'#ffff', margin:'5px'}}>
+      <Typography.Title>Chi Tiết Khách Sạn</Typography.Title>
       <Typography.Text>Tên Khách Sạn: {hotel.name}</Typography.Text>
       <Typography.Text>Đánh giá: {hotel.ratings}</Typography.Text>
       <Typography.Text>Địa chỉ: {hotel.address}</Typography.Text>
@@ -71,10 +70,9 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
           Approve Hotel
         </Button>
       )}
-        <Button style={{width:'120px'}} type="default" href="/admin" >
+      <Button style={{width:'120px'}} type="default" danger href="/admin" >
           Quay Lại
         </Button>
-    
   </Layout>
 );
 };

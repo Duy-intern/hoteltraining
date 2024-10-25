@@ -99,7 +99,6 @@ const EditHotel: React.FC = () => {
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">Update Hotel</Button>
-
       </Form.Item>
     </Form>
     

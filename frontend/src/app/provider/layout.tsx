@@ -17,13 +17,12 @@ const items = [
 const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
   const pathname = usePathname(); 
   return (
-    
-    <Layout style={{ minHeight: '100vh' }}> 
-      <Sider width={200} className="site-layout-background">
+    <Layout style={{ minHeight: '250px' }}> 
+      <Sider width={200} >
         <Menu
           mode="inline"
           selectedKeys={[pathname]}
-          style={{ height: '100%', borderRight: 0 }}
+          style={{ height: '100%'}}
           items={items}
         >
         </Menu>

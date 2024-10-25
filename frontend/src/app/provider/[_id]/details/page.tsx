@@ -28,7 +28,6 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
             Authorization: `Bearer ${token}`,
           },
         });
-        // console.log(response.data)
         setHotel(response.data);
       } catch (error) {
         console.log(error)
@@ -60,7 +59,7 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
     return <div>Loading</div>
   }
   return (
-    <Layout>
+    <Layout style={{backgroundColor:'#ffffff'}}>
     <Typography.Title>Chi Tiết Khách Sạn</Typography.Title>
       <Typography.Text>Tên Khách Sạn: {hotel.name}</Typography.Text>
       <Typography.Text>Đánh giá: {hotel.ratings}</Typography.Text>
@@ -75,7 +74,6 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
         <Button style={{width:'120px'}} type="default" href="/provider" >
           Quay Lại
         </Button>
-    
   </Layout>
 );
 };

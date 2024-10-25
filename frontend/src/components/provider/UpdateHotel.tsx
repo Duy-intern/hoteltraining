@@ -68,17 +68,15 @@ const UpdateHotel: React.FC<CreateHotelFormProps> = ({_id,  onClose , onSuccess}
       >
         <Input placeholder="Nhập tên khách sạn" />
       </Form.Item>
-
       <Form.Item
         name="ratings"
         label="Đánh giá"
         rules={[
-          { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 0 đến 5' }
+          { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 1 đến 5' }
         ]}
       >
         <InputNumber placeholder="Nhập đánh giá khách sạn (0-5)" step={1} />
       </Form.Item>
-
       <Form.Item
         name="address"
         label="Địa chỉ"
@@ -94,7 +92,6 @@ const UpdateHotel: React.FC<CreateHotelFormProps> = ({_id,  onClose , onSuccess}
       >
         <Input placeholder="Nhập thành phố" />
       </Form.Item>
-
       <Form.Item
         name="price"
         label="Giá"
@@ -102,13 +99,10 @@ const UpdateHotel: React.FC<CreateHotelFormProps> = ({_id,  onClose , onSuccess}
       >
         <InputNumber placeholder="Nhập giá mỗi đêm" />
       </Form.Item>
-
       <Form.Item>
         <Button type="primary" htmlType="submit">Update Hotel</Button>
-
       </Form.Item>
     </Form>
-    
   </Layout>
 );
 };

@@ -1,8 +1,8 @@
 "use client";
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Layout, Table } from 'antd';
-import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/hooks/useContext';
 
 interface Hotel {
@@ -79,7 +79,7 @@ const {token} = useAuth();
   ];
 
   return (
-    <Layout>
+    <Layout style={{margin: ' 5px' }}>
 
       <Table
         dataSource={hotels}

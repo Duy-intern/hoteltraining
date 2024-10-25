@@ -26,18 +26,13 @@ const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
 };
 
 
-
   return(
-  
   <Layout  style={{ minHeight: '100vh', backgroundColor: '#f0f2f5',justifyContent:'center', alignItems:'center' }}>
     <Form 
-  name="basic"
   labelCol={{ span: 8 }}
   wrapperCol={{ span: 16 }}
-  style={{ maxWidth: 600 , alignItems:'center',justifyContent:'center'}}
   initialValues={{ remember: true }}
   onFinish={onFinish}
-  autoComplete="off"
 >
   <Form.Item<FieldType>
     label="Email"
@@ -46,7 +41,6 @@ const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
   >
     <Input />
   </Form.Item>
-
   <Form.Item<FieldType>
     label="Password"
     name="passwordNonEncrypt"
@@ -67,7 +61,7 @@ const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     </Form.Item>
   <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
     <Button type="primary" htmlType="submit">
-      Submit
+     Đăng ký
     </Button>
   </Form.Item>
 </Form>

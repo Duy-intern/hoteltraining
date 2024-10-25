@@ -64,15 +64,9 @@ useEffect (() => {
 
   ];
   
-
-
   return (
     <Layout style={{padding: '2px'}}>
-    <Table
-      dataSource={hotels}
-      columns={columns}
-      rowKey="_id"
-    />
+    <Table dataSource={hotels} columns={columns} rowKey="_id"/>
   </Layout>
 
   );

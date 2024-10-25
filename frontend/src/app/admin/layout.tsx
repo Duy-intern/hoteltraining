@@ -2,7 +2,6 @@
 import React, { ReactNode } from 'react'; 
 import { Layout, Menu } from 'antd';
 import Link from 'next/link';
-import { AuthProvider } from '@/components/hooks/useContext';
 
 const { Sider, Content } = Layout;
 
@@ -17,10 +16,7 @@ const items = [
 
 const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
   return (
-    
     <Layout style={{ minHeight: '100vh' }}>
-         <AuthProvider>
-      
       <Sider width={200} className="site-layout-background">
         <Menu
           mode="inline"
@@ -31,7 +27,6 @@ const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
         </Menu>
       </Sider>
       <Content>{children}</Content>
-    </AuthProvider>
     </Layout>
   );
 };

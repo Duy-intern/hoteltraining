@@ -84,7 +84,7 @@ const CreateHotelForm: React.FC<CreateHotelFormProps> = ({ onSuccess, onClose })
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">Tạo khách sạn</Button>
+        <Button type="text" htmlType="submit">Tạo khách sạn</Button>
       </Form.Item>
     </Form>
   );

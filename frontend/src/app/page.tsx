@@ -8,10 +8,16 @@ const App: React.FC = () => {
   return (
     <Layout>
     <Content>
-           <Image 
+      <div style={{ display: 'flex',justifyContent:'center' }}>
+      <Image 
            alt="example"
            src="https://wallpapercave.com/wp/wp1846066.jpg"
-           style={{ width: '100%', height: '100%', objectFit: 'contain' }}/>   
+           width={'70%'}
+
+           preview={false}
+           
+            />
+      </div>
       </Content>
       
     </Layout>
