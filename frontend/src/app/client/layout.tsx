@@ -19,7 +19,7 @@ const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
 
    return (
     <Layout > 
-      <Sider style={{top:'64px',bottom: '0px', overflowY:'auto' ,position:'fixed'}}>
+      <Sider style={{top:'64px',bottom: '0px' ,position:'fixed'}}>
         <Menu
           mode="inline"
          selectedKeys={[pathname]}
