@@ -6,6 +6,7 @@ import { Button, Drawer, Layout, Table } from "antd";
 import { useAuth } from "@/components/hooks/useContext";
 import CreateHotelForm from "@/components/provider/CreateHotel";
 import UpdateHotel from "@/components/provider/UpdateHotel";
+import Link from "next/link";
 
 interface Hotel {
   _id: string;
@@ -73,7 +74,7 @@ const HotelList: React.FC = () => {
       title: "Tên Khách Sạn",
       dataIndex: "name",
       key: "name",
-      render: (text: string) => <a href="#">{text}</a>,
+      render: (text: string) => <Link href="#">{text}</Link>,
     },
     {
       title: "Địa Chỉ",

@@ -75,7 +75,7 @@ const UpdateHotel: React.FC<CreateHotelFormProps> = ({_id,  onClose , onSuccess}
           { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 1 đến 5' }
         ]}
       >
-        <InputNumber placeholder="Nhập đánh giá khách sạn (0-5)" step={1} />
+        <InputNumber placeholder="Nhập đánh giá khách sạn (1-5)"/>
       </Form.Item>
       <Form.Item
         name="address"

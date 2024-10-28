@@ -56,7 +56,7 @@ const CreateHotelForm: React.FC<CreateHotelFormProps> = ({ onSuccess, onClose })
           { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 1 đến 5' }
         ]}
       >
-        <InputNumber placeholder="Nhập đánh giá khách sạn (0-5)" step={1} />
+        <InputNumber placeholder="Nhập đánh giá khách sạn (1-5)"  />
       </Form.Item>
 
       <Form.Item
@@ -84,7 +84,7 @@ const CreateHotelForm: React.FC<CreateHotelFormProps> = ({ onSuccess, onClose })
       </Form.Item>
 
       <Form.Item>
-        <Button type="text" htmlType="submit">Tạo khách sạn</Button>
+        <Button type="primary" htmlType="submit">Tạo khách sạn</Button>
       </Form.Item>
     </Form>
   );

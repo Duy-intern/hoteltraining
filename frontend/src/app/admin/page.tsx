@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Button, Layout, Table } from 'antd';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/hooks/useContext';
+import Link from 'next/link';
 
 interface Hotel {
   _id: string;
@@ -50,7 +51,7 @@ useEffect (() => {
       title: "Tên Khách Sạn",
       dataIndex: "name",
       key: "name",
-      render: (text: string) => <a href="#">{text}</a>,
+      render: (text: string) => <Link href="#">{text}</Link>,
     },
     {
       title: "Địa Chỉ",

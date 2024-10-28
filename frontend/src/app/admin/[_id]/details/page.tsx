@@ -28,7 +28,6 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
             Authorization: `Bearer ${token}`,
           },
         });
-        // console.log(response.data)
         setHotel(response.data);
       } catch (error) {
         console.log(error)
@@ -76,7 +75,6 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
       <Button style={{width:'120px'}} type="default" danger  >
           Quay Lại
         </Button></Link>
-   
       </div>
      
   </Layout>

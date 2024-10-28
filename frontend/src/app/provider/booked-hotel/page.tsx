@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Layout, Table } from 'antd';
 
 import { useAuth } from '@/components/hooks/useContext';
+import Link from 'next/link';
 
 interface Hotel {
   _id: string;
@@ -41,7 +42,7 @@ useEffect (() => {
       title: "Tên Khách Sạn",
       dataIndex: ["hotel", "name"], 
       key: "hotelName",
-      render: (text: string) => <a href="#">{text}</a>,
+      render: (text: string) => <Link href="#">{text}</Link>,
     },
    
     {
@@ -66,7 +67,9 @@ useEffect (() => {
   
   return (
     <Layout style={{padding: '2px'}}>
-    <Table dataSource={hotels} columns={columns} rowKey="_id"/>
+    <Table dataSource={hotels}
+     columns={columns}
+      rowKey="_id"/>
   </Layout>
 
   );
