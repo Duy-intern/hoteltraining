@@ -7,7 +7,7 @@ const Image = dynamic(() => import('antd/lib/image'), { ssr: false });
 
 import Link from "next/link";
 import {  useAuth } from "../hooks/useContext";
-import { Content, Footer, Header } from "antd/lib/layout/layout";
+import { Content, Header } from "antd/lib/layout/layout";
 
 
 
@@ -15,7 +15,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { token, logout } = useAuth(); 
 
   return (
-    <Layout>
+    <Layout >
             <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background:'#ffffff'}}>
              <Link href={'/'}>
              <Image alt="logo" preview={false}
@@ -39,9 +39,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <Content>
             {children}
           </Content>
-          <Footer style={{ textAlign: 'center', background:'#efefef' }}>
-            Ant Design Layout ©2024 Created by You
-          </Footer>
+     
     </Layout>
   );  
 };

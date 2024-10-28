@@ -18,7 +18,7 @@ const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
   const pathname = usePathname(); 
 
    return (
-    <Layout style={{ minHeight: '100vh' }}> 
+    <Layout style={{ minHeight: '90vh', margin:'5px' }}> 
       <Sider width={200}>
         <Menu
           mode="inline"

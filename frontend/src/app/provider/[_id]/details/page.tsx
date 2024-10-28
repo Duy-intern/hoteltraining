@@ -4,6 +4,7 @@ import axios from "axios";
 import { Button, Layout, Typography,  } from "antd";
 import {  useParams } from "next/navigation";
 import { useAuth } from "@/components/hooks/useContext";
+import Link from "next/link";
 
 interface Hotel {
   name: string;
@@ -71,9 +72,11 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
           Submit Hotel
         </Button>
       )}
-        <Button style={{width:'120px'}} type="default" href="/provider" >
+      <Link href={'/provider'}>
+      <Button style={{width:'120px'}} type="default"  >
           Quay Lại
-        </Button>
+        </Button></Link>
+     
   </Layout>
 );
 };
