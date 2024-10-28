@@ -21,6 +21,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (storedToken) {
       setToken(storedToken);
     }
+    
 
   }, []);
 
@@ -36,10 +37,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem('user'); 
     route.push('/')
   };
-  window.addEventListener("beforeunload", () => {
-    localStorage.removeItem("token");
-  });
-  
+
 
   return (
     <AuthContext.Provider value={{ token, setToken, logout, loginToken }}>
