@@ -58,7 +58,7 @@ const Login: React.FC = () => {
     <Form.Item<FieldType>
       label="Email"
       name="email"
-      rules={[{ required: true, message: 'Please input your username!' }]}
+      rules={[{ required: true, message: 'Please input your email!' }]}
     >
       <Input />
     </Form.Item>
