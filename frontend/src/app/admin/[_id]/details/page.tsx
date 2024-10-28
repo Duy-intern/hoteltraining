@@ -72,7 +72,7 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
         </Button>
       )}
       <Link href="/admin">
-      <Button style={{width:'120px'}} type="default" danger  >
+      <Button style={{width:'120px'}} type="primary" danger  >
           Quay Lại
         </Button></Link>
       </div>

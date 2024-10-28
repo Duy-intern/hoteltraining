@@ -10,7 +10,7 @@ const Layout = dynamic(() => import('antd/lib/layout'), { ssr: false });
 
 const App: React.FC = () => {
   return (
-    <Layout style={{ height:'100vh',overflow:'hidden'}}>
+    <Layout>
     <Content>
       <div style={{ display: 'flex',justifyContent:'center',marginTop: '64px' }}>
       <Image 

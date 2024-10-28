@@ -104,7 +104,7 @@ const EditHotel: React.FC = () => {
       </Form.Item>
       <Form.Item>
         <Link href={"/admin"}>
-        <Button type="primary" danger htmlType="submit">Back To List</Button>
+        <Button type="primary" danger htmlType="submit">Quay lại</Button>
         </Link>
       </Form.Item>
       </div> 

@@ -60,22 +60,23 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
     return <div>Loading</div>
   }
   return (
-    <Layout style={{ minHeight:'100vh',backgroundColor:'#ffffff'}}>
+    <Layout style={{ height:'cacl(100vh-64px)',backgroundColor:'#ffffff' ,padding:'5px'}}>
     <Typography.Title>Chi Tiết Khách Sạn</Typography.Title>
       <Typography.Text>Tên Khách Sạn: {hotel.name}</Typography.Text>
       <Typography.Text>Đánh giá: {hotel.ratings}</Typography.Text>
       <Typography.Text>Địa chỉ: {hotel.address}</Typography.Text>
       <Typography.Text>Thành Phố: {hotel.city}</Typography.Text>
       <Typography.Text>Giá: {hotel.price}</Typography.Text>
-      {hotel.submitStatus !== "submitted" && (
+      <div style={{display:'flex' , justifyContent:'space-between'}}> 
+        {hotel.submitStatus !== "submitted" && (
         <Button style={{width:'120px'}} type="primary" onClick={handleSubmit} >
           Submit Hotel
         </Button>
       )}
       <Link href={'/provider'}>
-      <Button style={{width:'120px'}} type="default"  >
+      <Button style={{width:'120px'}} type="primary"  danger >
           Quay Lại
-        </Button></Link>
+        </Button></Link></div>
      
   </Layout>
 );

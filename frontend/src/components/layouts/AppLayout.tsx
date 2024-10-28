@@ -15,7 +15,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { token, logout } = useAuth(); 
 
   return (
-    <Layout >
+    <Layout  style={{ height:'100vh',overflow:'hidden'}}>
             <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background:'#ffffff' ,height:'64px', position:'fixed', top:'0', left:'0', right:'0'}}>
              <Link href={'/'}>
              <Image alt="logo" preview={false}

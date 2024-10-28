@@ -71,11 +71,12 @@ import Link from 'next/link';
 
 
     return (
-      <Layout style={{padding: '5px'}}>
+      <Layout >
       <Table
         dataSource={hotels}
         columns={columns}
         rowKey="_id"
+        scroll={{y:530,x:'auto'}}
       />
     </Layout>
 

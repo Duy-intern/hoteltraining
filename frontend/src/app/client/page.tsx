@@ -31,7 +31,6 @@ const {token} = useAuth();
           },
         })
         setHotels(response.data)
-        console.log(HotelList)
       }catch(error){
         console.log('Không lấy đc dữ liệu',error)
       }
