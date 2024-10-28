@@ -1,8 +1,12 @@
 "use client"
 import React from 'react';
-import {  Image, Layout } from 'antd';
+import dynamic from 'next/dynamic';
+import { Content } from 'antd/lib/layout/layout';
 
-const {  Content } = Layout;
+const Image = dynamic(() => import('antd/lib/image'), { ssr: false });
+const Layout = dynamic(() => import('antd/lib/layout'), { ssr: false });
+
+
 
 const App: React.FC = () => {
   return (
