@@ -17,8 +17,8 @@ const items = [
 const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
   const pathname = usePathname(); 
   return (
-    <Layout style={{ minHeight: '90vh', marginTop:'5px' }}> 
-      <Sider >
+    <Layout> 
+      <Sider style={{top:'64px',bottom: '0px', overflowY:'auto' ,position:'fixed'}}>
         <Menu
           mode="inline"
           selectedKeys={[pathname]}
@@ -27,7 +27,7 @@ const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
         >
         </Menu>
       </Sider>
-    <Content style={{padding: '5px'}}>{children}</Content>
+    <Content style={{marginTop:'64px', marginLeft:'200px', padding:'5px',height:'calc(100vh - 64px)',overflowY:'auto'}}>{children}</Content>
     </Layout>
   );
 };

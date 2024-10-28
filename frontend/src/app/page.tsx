@@ -10,9 +10,9 @@ const Layout = dynamic(() => import('antd/lib/layout'), { ssr: false });
 
 const App: React.FC = () => {
   return (
-    <Layout>
+    <Layout style={{ height:'100vh',overflow:'hidden'}}>
     <Content>
-      <div style={{ display: 'flex',justifyContent:'center' }}>
+      <div style={{ display: 'flex',justifyContent:'center',marginTop: '64px' }}>
       <Image 
            alt="example"
            src="https://wallpapercave.com/wp/wp1846066.jpg"

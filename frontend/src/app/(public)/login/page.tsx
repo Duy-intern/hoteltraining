@@ -48,7 +48,7 @@ const Login: React.FC = () => {
     }
   };
   return(
-    <Layout  style={{ minHeight: '91vh', backgroundColor: '#f0f2f5',justifyContent:'center', alignItems:'center' }}>
+    <Layout  style={{ minHeight: '100vh', backgroundColor: '#f0f2f5',justifyContent:'center', alignItems:'center' }}>
   <Form 
     labelCol={{ span: 8 }}
     wrapperCol={{ span: 16 }}
