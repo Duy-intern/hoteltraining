@@ -13,13 +13,10 @@ const App: React.FC = () => {
            alt="example"
            src="https://wallpapercave.com/wp/wp1846066.jpg"
            width={'70%'}
-
            preview={false}
-           
             />
       </div>
       </Content>
-      
     </Layout>
   );
 };

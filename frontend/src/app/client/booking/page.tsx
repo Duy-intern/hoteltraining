@@ -4,6 +4,7 @@
   import {  Layout, Table } from 'antd';
 
   import { useAuth } from '@/components/hooks/useContext';
+import Link from 'next/link';
 
 
   interface Hotel {
@@ -44,7 +45,7 @@
         title: "Tên Khách Sạn",
         dataIndex: ["hotel", "name"], 
         key: "hotelName",
-        render: (text: string) => <a href="#">{text}</a>,
+        render: (text: string) => <Link href="#">{text}</Link>,
       },
      
       {
@@ -70,7 +71,7 @@
 
 
     return (
-      <Layout style={{padding: '2px'}}>
+      <Layout style={{padding: '5px'}}>
       <Table
         dataSource={hotels}
         columns={columns}

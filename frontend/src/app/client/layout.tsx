@@ -18,8 +18,7 @@ const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
   const pathname = usePathname(); 
 
    return (
-    <Layout style={{ minHeight: '100vh' }}>
-         
+    <Layout style={{ minHeight: '100vh' }}> 
       <Sider width={200}>
         <Menu
           mode="inline"
@@ -30,7 +29,6 @@ const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
         </Menu>
       </Sider>
       <Content>{children}</Content>
-
     </Layout>
   );
 };

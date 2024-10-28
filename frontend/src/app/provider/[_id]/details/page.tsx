@@ -59,7 +59,7 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
     return <div>Loading</div>
   }
   return (
-    <Layout style={{backgroundColor:'#ffffff'}}>
+    <Layout style={{ minHeight:'100vh',backgroundColor:'#ffffff'}}>
     <Typography.Title>Chi Tiết Khách Sạn</Typography.Title>
       <Typography.Text>Tên Khách Sạn: {hotel.name}</Typography.Text>
       <Typography.Text>Đánh giá: {hotel.ratings}</Typography.Text>

@@ -80,13 +80,11 @@ const {token} = useAuth();
 
   return (
     <Layout style={{margin: ' 5px' }}>
-
       <Table
         dataSource={hotels}
         columns={columns}
         rowKey="_id"
       />
-  
     </Layout>
 
   );

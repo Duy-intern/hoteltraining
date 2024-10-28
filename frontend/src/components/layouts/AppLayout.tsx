@@ -3,17 +3,16 @@ import React from "react";
 import dynamic from 'next/dynamic';
 const Button = dynamic(() => import('antd/lib/button'), { ssr: false });
 const Layout = dynamic(() => import('antd/lib/layout'), { ssr: false });
+const Image = dynamic(() => import('antd/lib/image'), { ssr: false });
 
 import Link from "next/link";
 import {  useAuth } from "../hooks/useContext";
 import { Content, Footer, Header } from "antd/lib/layout/layout";
-import { Image } from "antd";
 
 
 
 const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { token, logout } = useAuth(); 
-
 
   return (
     <Layout>

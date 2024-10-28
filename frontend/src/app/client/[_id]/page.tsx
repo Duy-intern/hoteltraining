@@ -4,6 +4,7 @@ import axios from "axios";
 import { Button, Layout, Typography,  } from "antd";
 import {  useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/components/hooks/useContext";
+import Link from "next/link";
 
 interface Hotel {
     _id:string;
@@ -38,9 +39,7 @@ const {token} = useAuth();
     fetchHotel();
   }, [_id,token]);
 
-const handelBack = () =>{
-  router.push('/client')
-}
+
 
 const handelBook = async (_id :string , price:number) =>{
   try{
@@ -79,12 +78,12 @@ const handelBook = async (_id :string , price:number) =>{
       <Button style={{width:'120px'}} type="primary" onClick={() => handelBook(hotel._id,hotel.price)} >
           Book Hotel
         </Button>
-        <Button style={{width:'120px'}} type="default" danger onClick={handelBack} >
+        <Link href={"/client"}>
+        <Button style={{width:'120px'}} type="default" danger  >
           Quay Lại
         </Button>
+        </Link>
       </div>
-    
-    
   </Layout>
 );
 };

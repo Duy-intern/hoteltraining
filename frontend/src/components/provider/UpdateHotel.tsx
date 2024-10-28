@@ -58,7 +58,7 @@ const UpdateHotel: React.FC<CreateHotelFormProps> = ({_id,  onClose , onSuccess}
   };
 
   return (
-    <Layout>
+    <Layout  style={{background:'white'}}>
     <h1>Chỉnh sửa khách sạn</h1>
     <Form form={form} onFinish={onFinish} layout="vertical">
       <Form.Item

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Button, Layout, Typography,  } from "antd";
 import {  useParams } from "next/navigation";
 import { useAuth } from "@/components/hooks/useContext";
+import Link from "next/link";
 
 interface Hotel {
   name: string;
@@ -58,21 +59,26 @@ const [hotel,setHotel] = useState<Hotel | null>(null)
     return <div>Loading</div>
   }
   return (
-    <Layout style={{background:'#ffff', margin:'5px'}}>
+    <Layout style={{background:'#ffff', margin:'5px', padding:'5px'}}>
       <Typography.Title>Chi Tiết Khách Sạn</Typography.Title>
       <Typography.Text>Tên Khách Sạn: {hotel.name}</Typography.Text>
       <Typography.Text>Đánh giá: {hotel.ratings}</Typography.Text>
       <Typography.Text>Địa chỉ: {hotel.address}</Typography.Text>
       <Typography.Text>Thành Phố: {hotel.city}</Typography.Text>
       <Typography.Text>Giá: {hotel.price}</Typography.Text>
+      <div style={{display:'flex' ,justifyContent:'space-between'}}>
       {hotel.submitStatus !== "approved" && (
         <Button style={{width:'120px'}} type="primary" onClick={handleSubmit} >
           Approve Hotel
         </Button>
       )}
-      <Button style={{width:'120px'}} type="default" danger href="/admin" >
+      <Link href="/admin">
+      <Button style={{width:'120px'}} type="default" danger  >
           Quay Lại
-        </Button>
+        </Button></Link>
+   
+      </div>
+     
   </Layout>
 );
 };

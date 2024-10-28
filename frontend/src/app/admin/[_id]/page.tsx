@@ -4,6 +4,7 @@ import axios from "axios";
 import { Form, Input, InputNumber, Button, message, Layout } from "antd";
 import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/components/hooks/useContext";
+import Link from "next/link";
 
 interface Hotel {
   name: string;
@@ -53,7 +54,7 @@ const EditHotel: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <Layout style={{background:'white' , margin:'5px', padding: "5px"}}>
     <h1>Chỉnh sửa khách sạn</h1>
     <Form form={form} onFinish={onFinish} layout="vertical">
       <Form.Item
@@ -68,10 +69,10 @@ const EditHotel: React.FC = () => {
         name="ratings"
         label="Đánh giá"
         rules={[
-          { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 0 đến 5' }
+          { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 1 đến 5' }
         ]}
       >
-        <InputNumber placeholder="Nhập đánh giá khách sạn (0-5)" step={1} />
+        <InputNumber placeholder="Nhập đánh giá khách sạn (1-5)"/>
       </Form.Item>
 
       <Form.Item
@@ -97,9 +98,17 @@ const EditHotel: React.FC = () => {
       >
         <InputNumber placeholder="Nhập giá mỗi đêm" />
       </Form.Item>
-      <Form.Item>
+     <div style={{display:'flex', justifyContent:'space-between'}}>
+     <Form.Item>
         <Button type="primary" htmlType="submit">Update Hotel</Button>
       </Form.Item>
+      <Form.Item>
+        <Link href={"/admin"}>
+        <Button type="primary" danger htmlType="submit">Back To List</Button>
+        </Link>
+      </Form.Item>
+      </div> 
+     
     </Form>
     
   </Layout>

@@ -5,7 +5,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 interface AuthContextType {
   token: string | null;
   setToken: (token: string | null) => void;
-  login: (token: string) => void; 
+  loginToken: (token: string) => void; 
   logout: () => void; 
 }
 
@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   }, []);
 
-  const login = (token: string) => {
+  const loginToken = (token: string) => {
     setToken(token);
     localStorage.setItem('token', token);
   };
@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ token, setToken, logout, login }}>
+    <AuthContext.Provider value={{ token, setToken, logout, loginToken }}>
       {children}
     </AuthContext.Provider>
   );

@@ -12,14 +12,14 @@ type FieldType = {
 
 const Login: React.FC = () => {
   const route = useRouter();
-  const {login} = useAuth();
+  const {loginToken} = useAuth();
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     try{
       const response = await axios.post('http://localhost:3001/auth',values)
 
       const token = response.data.accessToken;
       const userInfo = {  accountType : response.data.accountType }; 
-      login(token);
+      loginToken(token);
       message.success('Đăng nhập thành công!');
       switch (userInfo.accountType) {
         case 'client':
