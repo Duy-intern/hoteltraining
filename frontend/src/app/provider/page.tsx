@@ -115,7 +115,7 @@ const HotelList: React.FC = () => {
           Create Hotel
         </Button>
       </div>
-      <Table dataSource={hotels} columns={columns} rowKey="_id" />
+      <Table dataSource={hotels} columns={columns} rowKey="_id" scroll={{y:480,x:'auto'}} />
         <Drawer  width={720} title="Create Hotel" onClose={onClose} open={open}>
           <CreateHotelForm onSuccess={fetchHotels} onClose={onClose} />
         </Drawer>

@@ -79,11 +79,12 @@ const {token} = useAuth();
   ];
 
   return (
-    <Layout style={{margin: ' 5px' }}>
+    <Layout >
       <Table
         dataSource={hotels}
         columns={columns}
         rowKey="_id"
+        scroll={{y: 500, x:'auto'}}
       />
     </Layout>
 

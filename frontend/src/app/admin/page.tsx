@@ -87,11 +87,12 @@ useEffect (() => {
 
 
   return (
-    <Layout style={{padding :'5px'}}>
+    <Layout style={{padding :'5px' }}>
     <Table
       dataSource={hotels}
       columns={columns}
       rowKey="_id"
+      scroll={{ y: 530, x: 'auto' }} 
     />
   </Layout>
   );

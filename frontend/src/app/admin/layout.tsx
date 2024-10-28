@@ -28,7 +28,7 @@ const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
         >
         </Menu>
       </Sider>
-      <Content style={{marginTop:'64px', marginLeft:'200px', padding:'5px',height:'calc(100vh - 64px)',overflowY:'auto'}}>{children}</Content>
+      <Content style={{marginTop:'64px', marginLeft:'200px', padding:'5px',height:'calc(100vh - 64px)',overflow:'auto'}}>{children}</Content>
     </Layout>
   );
 };
