@@ -16,27 +16,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const route = useRouter();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
+    const storedToken = sessionStorage.getItem('token');
 
     if (storedToken) {
       setToken(storedToken);
     }
-    
 
   }, []);
 
   const loginToken = (token: string) => {
     setToken(token);
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
   };
   
 
   const logout = () => {
     setToken(null); 
-    localStorage.removeItem('token'); 
-    localStorage.removeItem('user'); 
+    sessionStorage.removeItem('token'); 
+    sessionStorage.removeItem('user'); 
     route.push('/')
   };
+
 
 
   return (
