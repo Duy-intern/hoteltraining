@@ -25,12 +25,12 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               /></Link>
             
         {!token ? (
-          <div>
+          <div style={{ display:'flex',gap:'4px'}}>
               <Link href="/login"><Button>Login</Button></Link>
               <Link href="/register"><Button>Register</Button></Link>
             </div>
           ) : (
-            <div style={{ display:'flex',gap:'4px'}}>
+            <div >
               <Button type="primary" danger onClick={logout}>Logout</Button> 
             </div>
           )}
