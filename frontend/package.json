@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
+    "@tsconfig/recommended": "^1.0.8",
     "antd": "^5.21.5",
     "axios": "^1.7.7",
     "next": "^14.2.15",
+    "next-cloudinary": "^6.16.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "sass": "^1.82.0"
   },
   "devDependencies": {
     "@types/node": "^20",

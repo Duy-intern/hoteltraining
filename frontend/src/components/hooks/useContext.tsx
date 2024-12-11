@@ -34,6 +34,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setToken(null); 
     sessionStorage.removeItem('token'); 
     sessionStorage.removeItem('user'); 
+
     route.push('/')
   };
 

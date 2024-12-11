@@ -1,9 +1,10 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, InputNumber, message } from 'antd';
 import axios from 'axios';
 import { useAuth } from '@/components/hooks/useContext';
+import {  CldUploadWidget } from 'next-cloudinary';
 
 interface HotelFormValues {
   name: string;
@@ -11,6 +12,7 @@ interface HotelFormValues {
   address: string;
   city: string;
   price: number;
+  image: string;
 }
 
 interface CreateHotelFormProps {
@@ -18,24 +20,44 @@ interface CreateHotelFormProps {
   onClose: () => void;
 }
 
+import { CloudinaryUploadWidgetResults } from 'next-cloudinary';
+
 const CreateHotelForm: React.FC<CreateHotelFormProps> = ({ onSuccess, onClose }) => {
-    const {token} = useAuth();
+  const { token } = useAuth();
+  const [imageUrl, setImageUrl] = useState<string>('');
+
   const onFinish = async (values: HotelFormValues) => {
     try {
-      
-      const response = await axios.post('http://localhost:3001/hotel/provider', values,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, 
-          }
-        }
-      )
+      if (!imageUrl) {
+        message.error('Vui lòng tải lên hình ảnh khách sạn');
+        return; 
+      }
+      values.image = imageUrl;
+
+      const response = await axios.post('http://localhost:3001/hotel/provider', values, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       console.log('Hotel created:', response.data);
       onSuccess();
-      onClose(); 
+      onClose();
     } catch (error) {
       message.error('Có lỗi xảy ra khi tạo khách sạn.');
       console.error('Error creating hotel:', error);
+    }
+  };
+
+  const handleImageUploadSuccess = (result: CloudinaryUploadWidgetResults) => {
+    const info = result?.info;
+
+    if (typeof info !== 'string' && info?.secure_url) {
+      const uploadedImageUrl = info.secure_url;
+      setImageUrl(uploadedImageUrl);
+      message.success('Hình ảnh đã được tải lên thành công.');
+    } else {
+      message.error('Lỗi khi tải lên hình ảnh.');
     }
   };
 
@@ -53,10 +75,10 @@ const CreateHotelForm: React.FC<CreateHotelFormProps> = ({ onSuccess, onClose })
         name="ratings"
         label="Đánh giá"
         rules={[
-          { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 1 đến 5' }
+          { required: true, type: 'number', min: 1, max: 5, message: 'Đánh giá từ 1 đến 5' },
         ]}
       >
-        <InputNumber placeholder="Nhập đánh giá khách sạn (1-5)"  />
+        <InputNumber placeholder="Nhập đánh giá khách sạn (1-5)" />
       </Form.Item>
 
       <Form.Item
@@ -67,6 +89,21 @@ const CreateHotelForm: React.FC<CreateHotelFormProps> = ({ onSuccess, onClose })
         <Input placeholder="Nhập địa chỉ khách sạn" />
       </Form.Item>
 
+      <Form.Item
+        label="Hình ảnh khách sạn"
+        rules={[{ required: true, message: 'Vui lòng tải lên hình ảnh khách sạn' }]}
+      > 
+<CldUploadWidget uploadPreset="ImageHotel" 
+onSuccess={handleImageUploadSuccess}>
+  {({ open }) => {
+    return (
+      <button onClick={() => open()}>
+        Upload an Image
+      </button>
+    );
+  }}
+</CldUploadWidget>
+</Form.Item>
       <Form.Item
         name="city"
         label="Thành phố"
@@ -84,7 +121,9 @@ const CreateHotelForm: React.FC<CreateHotelFormProps> = ({ onSuccess, onClose })
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">Tạo khách sạn</Button>
+        <Button type="primary" htmlType="submit">
+          Tạo khách sạn
+        </Button>
       </Form.Item>
     </Form>
   );

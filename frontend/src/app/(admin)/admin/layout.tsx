@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 
 const { Sider, Content } = Layout;
 
-interface MyLayoutProps {
+interface RootAdminLayoutProps {
   children: ReactNode; 
 }
 
@@ -15,7 +15,7 @@ const items = [
   { key: '/admin', label: <Link href="/admin">Hotel List</Link> },
 ];
 
-const MyLayout: React.FC<MyLayoutProps> = ({ children }) => {
+const MyLayout: React.FC<RootAdminLayoutProps> = ({ children }) => {
   const pathname = usePathname()
   return (
     <Layout>

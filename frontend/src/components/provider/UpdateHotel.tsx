@@ -41,21 +41,38 @@ const UpdateHotel: React.FC<CreateHotelFormProps> = ({_id,  onClose , onSuccess}
   }, [_id, token,form]);
   
 
-  const onFinish = async (values: Hotel) => {
-    
-    try {
-      await axios.patch(`http://localhost:3001/hotel/provider/${_id}`, values, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      message.success("Khách sạn đã được cập nhật thành công.");
-      onSuccess();
-      onClose();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+ const onFinish = async (values: Hotel) => {
+  try {
+    await axios.patch(`http://localhost:3001/hotel/provider/${_id}`, values, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    message.success("Khách sạn đã được cập nhật thành công.");
+    onSuccess(); // Làm mới danh sách khách sạn
+    onClose(); // Đóng modal
+  } catch (error) {
+    console.log(error);
+    message.error("Không thể cập nhật khách sạn.");
+  }
+};
+
+const handleDelete = async () => {
+  try {
+    await axios.delete(`http://localhost:3001/hotel/provider/${_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    message.success("Khách sạn đã được xóa.");
+    onSuccess(); 
+    onClose(); 
+  } catch (error) {
+    console.log(error);
+    message.error("Không thể xóa khách sạn.");
+  }
+};
+
 
   return (
     <Layout  style={{background:'white'}}>
@@ -101,6 +118,9 @@ const UpdateHotel: React.FC<CreateHotelFormProps> = ({_id,  onClose , onSuccess}
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">Update Hotel</Button>
+         <Button type="primary" onClick={handleDelete} style={{ marginLeft: "10px" }}>
+            Delete Hotel
+          </Button>
       </Form.Item>
     </Form>
   </Layout>

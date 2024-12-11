@@ -23,7 +23,7 @@ const Login: React.FC = () => {
       message.success('Đăng nhập thành công!');
       switch (userInfo.accountType) {
         case 'client':
-          route.push('/client');
+          route.push('/');
           break;
         case 'provider':
           route.push('/provider');
@@ -32,7 +32,7 @@ const Login: React.FC = () => {
           route.push('/admin');
           break;
         default:
-          route.push('/');
+          route.push('');
       }
     }catch(error){
       if (axios.isAxiosError(error) && error.response) {

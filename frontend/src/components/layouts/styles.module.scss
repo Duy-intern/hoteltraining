@@ -1,0 +1,39 @@
+.customMenu {
+    display: flex;
+    width: 100%;
+    height: 80px;
+    justify-content: center;
+    width: 100%;
+    z-index: 0;
+
+    :global {
+        .ant-menu-horizontal {
+            border: 0;
+            border-bottom: none !important;
+            box-shadow: none;
+            .ant-menu-item-selected {
+                color: white;
+            }
+
+            .ant-menu-item-selected::after {
+                border-bottom-color: white;
+            }
+
+            .ant-menu-item-selected:hover {
+                border-bottom-color: white;
+            }
+
+            .ant-menu-item:hover::after {
+                border-bottom-color: white;
+            }
+        }
+    .ant-menu-light{
+    background: none;
+    color: white;
+    .ant-menu-item{
+        color: white;
+    }
+  
+    }
+    }
+}

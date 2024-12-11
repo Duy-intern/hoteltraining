@@ -7,6 +7,7 @@ import { useAuth } from "@/components/hooks/useContext";
 import CreateHotelForm from "@/components/provider/CreateHotel";
 import UpdateHotel from "@/components/provider/UpdateHotel";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Hotel {
   _id: string;
@@ -16,6 +17,7 @@ interface Hotel {
   city: string;
   price: number;
   submitStatus: string;
+  image:string;
 }
 
 const HotelList: React.FC = () => {
@@ -86,6 +88,20 @@ const HotelList: React.FC = () => {
       dataIndex: "city",
       key: "city",
     },
+      {
+    title: "Hình Ảnh",
+    dataIndex: "image",
+    key: "image",
+    render: (text: string) => (
+      <Image
+        src={text}
+        alt="Hotel"
+        width={80}
+        height={80}
+        style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "4px" }}
+      />
+    ),
+  },
     {
       title: "Giá",
       dataIndex: "price",

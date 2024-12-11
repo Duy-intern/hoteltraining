@@ -18,7 +18,6 @@ import Link from 'next/link';
 
   const HotelList: React.FC = () => {
     const [hotels,setHotels] = useState<Hotel[]>([]);
-
   const {token} = useAuth();
   useEffect (() => {
       const fecthHotels = async () =>{
@@ -29,8 +28,9 @@ import Link from 'next/link';
               Authorization: `Bearer ${token}`, 
             },
           })
-          setHotels(response.data)
-        }catch(error){
+          const filteredHotels = response.data.filter((hotel: Hotel) => hotel.hotel.name);
+          setHotels(filteredHotels);
+            }catch(error){
           console.log('Không lấy đc dữ liệu',error)
         }
       }
@@ -68,8 +68,6 @@ import Link from 'next/link';
     
     ];
     
-
-
     return (
       <Layout >
       <Table

@@ -1,8 +1,8 @@
 "use client";
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Layout, Table } from 'antd';
-import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/hooks/useContext';
 import Link from 'next/link';
 
@@ -20,17 +20,17 @@ const HotelList: React.FC = () => {
   const [hotels,setHotels] = useState<Hotel[]>([]);
 const route = useRouter();
 const {token} = useAuth();
-useEffect (() => {
+
+  useEffect (() => {
     const fecthHotels = async () =>{
         if(!token) return;
       try{
-        const response = await axios.get('http://localhost:3001/hotel/admin',{
+        const response = await axios.get(`http://localhost:3001/hotel/client`,{
           headers: {
             Authorization: `Bearer ${token}`, 
           },
         })
         setHotels(response.data)
-        console.log(HotelList)
       }catch(error){
         console.log('Không lấy đc dữ liệu',error)
       }
@@ -38,12 +38,10 @@ useEffect (() => {
     fecthHotels();
   },[token])
 
-  const handleEdit = (_id : string) =>{
-    route.push(`/admin/${_id}`)
-  }
 
-  const handleUpdate = (_id : string) =>{
-    route.push(`/admin/${_id}/details`)
+  const handleDetails = (_id : string) =>{
+    route.push(`/client/${_id}`)
+
   }
 
   const columns = [
@@ -73,28 +71,22 @@ useEffect (() => {
       title: "Hành Động",
       key: "action",
       render: (_: unknown, record: Hotel) => (
-        <div style={{display:'flex', gap:'4px'}}> 
-        {record.submitStatus === 'submitted' && (
-            <Button key={record._id} type="primary" onClick={() => handleEdit(record._id)}>
-              Update
-            </Button>
-          )}
-          <Button  key={record._id} type="default" onClick={() => handleUpdate(record._id)}> Details</Button>
-        </div>
+     <Button type="primary" onClick={() => handleDetails(record._id)}>Details</Button>
+    
       ),
     },
   ];
 
-
   return (
     <Layout >
-    <Table
-      dataSource={hotels}
-      columns={columns}
-      rowKey="_id"
-      scroll={{ y: 500, x: 'auto' }} 
-    />
-  </Layout>
+      <Table
+        dataSource={hotels}
+        columns={columns}
+        rowKey="_id"
+        scroll={{y: 500, x:'auto'}}
+      />
+    </Layout>
+
   );
 };
 

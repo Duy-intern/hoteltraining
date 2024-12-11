@@ -2,7 +2,6 @@
   import localFont from "next/font/local";
   import "./globals.css";
   import { ReactNode } from "react";
-  import AppLayout from "@/components/layouts/AppLayout";
   import { AuthProvider } from "@/components/hooks/useContext";
 
 
@@ -33,9 +32,7 @@
       <html lang="en" >
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <AuthProvider>
-            <AppLayout>
             {children}
-            </AppLayout>
             </AuthProvider>
         </body>
       </html>
